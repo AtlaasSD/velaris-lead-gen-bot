@@ -1,0 +1,12 @@
+# Archivos generados en tiempo de ejecución
+session_leads.json
+leads_*.pdf
+
+# Directorio de compilación de Rust
+/target/
+
+# Variables de entorno locales
+.env
+
+# Directorio de datos del navegador
+velaris_browser_data/

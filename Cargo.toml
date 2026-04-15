@@ -1,0 +1,20 @@
+[package]
+name        = "velaris_lead_gen"
+version     = "0.1.0"
+edition     = "2021"
+description = "Velaris Lead-Gen Bot — Extractor de leads sin web en Google Maps"
+authors     = ["Velaris Agency"]
+
+[dependencies]
+tokio          = { version = "1",    features = ["full"] }
+chromiumoxide  = "0.5.7"
+reqwest        = { version = "0.11", features = ["json", "rustls-tls"], default-features = false }
+serde          = { version = "1.0",  features = ["derive"] }
+serde_json     = "1.0"
+thiserror      = "1.0"
+anyhow         = "1.0"
+futures        = "0.3"
+chrono         = { version = "0.4",  features = ["serde"] }
+uuid           = { version = "1",    features = ["v4"] }
+indicatif      = "0.17"
+colored        = "2.1"
