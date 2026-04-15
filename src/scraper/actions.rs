@@ -257,8 +257,18 @@ pub async fn scrape_maps(
                 .and_then(|v| serde_json::from_value::<Detail>(v).ok())
                 .unwrap_or(Detail { phone: None, web: None, addr: None });
 
+            let mut final_phone = detail.phone;
+            if let Some(ref tel) = final_phone {
+                let lower = tel.to_lowercase();
+                let digits = tel.chars().filter(|c| c.is_ascii_digit()).count();
+                // Filtrar si es un botón de "Agregar teléfono" o un contenedor sucio con la dirección
+                if digits < 7 || lower.contains("agregar") || lower.contains("añadir") || lower.contains("add ") || lower.contains("dirección") {
+                    final_phone = None;
+                }
+            }
+
             // Log del teléfono extraído
-            match &detail.phone {
+            match &final_phone {
                 Some(tel) => log_ok(&format!("Teléfono extraído: {}", tel.bold())),
                 None      => log_warn("Sin teléfono disponible en el panel"),
             }
@@ -308,7 +318,7 @@ pub async fn scrape_maps(
                 id: uuid::Uuid::new_v4().to_string(),
                 nombre: raw.nombre,
                 direccion: detail.addr,
-                telefono: detail.phone,
+                telefono: final_phone,
                 correo: None,
                 categoria: categoria.to_string(),
                 url_web: detail.web,

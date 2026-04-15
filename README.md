@@ -26,6 +26,26 @@
 
 ---
 
+## 🚀 Guía de Instalación Rápida (Para Asesores)
+
+**1. Descarga el bot:**
+- Haz clic en el botón verde **"<> Code"** y luego en **"Download ZIP"**.
+
+**2. ⚠️ MUY IMPORTANTE: ¿Dónde descomprimirlo?**
+- Extrae la carpeta de archivos en tu disco local principal, por ejemplo: `C:\Velaris Lead-Gen Bot` o `C:\Velaris`.
+- **NUNCA** lo guardes en *OneDrive*, *Escritorio* o *Documentos* porque bloquean los archivos del navegador de Microsoft y el bot se trabará arrojando un error extraño (`ExitStatus`).
+
+**3. Ejecución principal:**
+- Entra a la carpeta descomprimida y haz **doble clic en `run.bat`** (ícono blanco con engranaje).
+- Si Windows te arroja una pantalla azul de seguridad ("Windows protegió su PC"), haz clic en la línea pequeña **"Más información"** y luego oprime el botón **"Ejecutar de todas formas"**.
+- La primera vez que abras el programa, la pantalla negra se quedará instalando complementos (Rust). Esto puede tardar unos minutos. 
+
+### 🔧 Solución a Errores Comunes
+* **La pantalla negra se abre y se cierra al instante:** Ocurre porque hiciste clic en el archivo azul `run.ps1`. Debes usar siempre el que se llama **`run`** o `run.bat` (ícono blanco con engranaje).
+* **Falla con "ExitStatus(21)":** El bot está colisionando con la sincronización de la nube en tu equipo. Mueve toda la carpeta del bot a un lugar sin sincronización como `C:\Velaris`.
+
+---
+
 ## Inicio rápido
 
 ### Opción A — Ejecución Automática (Doble clic)
