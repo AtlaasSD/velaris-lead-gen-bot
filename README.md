@@ -146,8 +146,7 @@ Remove-Item session_leads.json
 
 ## Desarrollado por
 
-**Velaris Agency** — Agencia de desarrollo web y marketing digital
+**Velaris** — Agencia de desarrollo web y marketing digital
+**Brayan Suárez** — Desarrollador
 
 ---
-
-*Uso interno. No distribuir sin autorización.*
