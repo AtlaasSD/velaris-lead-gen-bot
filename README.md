@@ -31,9 +31,9 @@
 **1. Descarga el bot:**
 - Haz clic en el botón verde **"<> Code"** y luego en **"Download ZIP"**.
 
-**2. ⚠️ MUY IMPORTANTE: ¿Dónde descomprimirlo?**
+**2. ⚠️ IMPORTANTE: ¿Dónde descomprimirlo?**
 - Extrae la carpeta de archivos en tu disco local principal, por ejemplo: `C:\Velaris Lead-Gen Bot` o `C:\Velaris`.
-- **NUNCA** lo guardes en *OneDrive*, *Escritorio* o *Documentos* porque bloquean los archivos del navegador de Microsoft y el bot se trabará arrojando un error extraño (`ExitStatus`).
+- **NUNCA** guardar en *OneDrive*, *Escritorio* o *Documentos* porque bloquean los archivos del navegador de Microsoft y el bot se trabará arrojando un error extraño (`ExitStatus`).
 
 **3. Ejecución principal:**
 - Entra a la carpeta descomprimida y haz **doble clic en `run.bat`** (ícono blanco con engranaje).
