@@ -150,3 +150,6 @@ Remove-Item session_leads.json
 **Brayan Suárez** — Desarrollador
 
 ---
+
+*Disclaimer: Este proyecto fue creado con fines educativos y de investigación. El uso de esta herramienta para el scraping de datos está sujeto a los Términos de Servicio de las plataformas consultadas. 
+El desarrollador no se hace responsable del uso indebido de esta herramienta.*
