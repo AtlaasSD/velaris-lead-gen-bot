@@ -3,7 +3,7 @@ use crate::models::{Lead, WebStatus};
 use crate::error::Result;
 
 /// Genera un PDF profesional con los leads extraídos
-pub async fn generate_report(page: &Page, leads: &[Lead], output_path: &str) -> Result<()> {
+pub async fn generate_report(page: &Page, leads: &[Lead], output_path: &str, zona: &str) -> Result<()> {
     let date_str = chrono::Local::now().format("%d/%m/%Y %H:%M").to_string();
     let total = leads.len();
 
@@ -13,8 +13,8 @@ pub async fn generate_report(page: &Page, leads: &[Lead], output_path: &str) -> 
         let direccion = lead.direccion.as_deref().unwrap_or("—");
         let web_badge = match &lead.url_web {
             Some(url) => format!(
-                r#"<span class="badge social">Red Social<br><small>{}</small></span>"#,
-                url.chars().take(35).collect::<String>()
+                r#"<a href="{}" target="_blank" class="badge social">Red Social<br><small>{}</small></a>"#,
+                url, url
             ),
             None => r#"<span class="badge none">Sin web</span>"#.to_string(),
         };
@@ -27,7 +27,9 @@ pub async fn generate_report(page: &Page, leads: &[Lead], output_path: &str) -> 
         };
         format!(
             r#"<tr>
-                <td class="name">{}</td>
+                <td class="name">
+                    <a href="{}" target="_blank" style="text-decoration:none; color:inherit;">{}</a>
+                </td>
                 <td><code>{}</code></td>
                 <td>{}</td>
                 <td class="small">{}</td>
@@ -35,7 +37,7 @@ pub async fn generate_report(page: &Page, leads: &[Lead], output_path: &str) -> 
                 <td>{}</td>
                 <td>{}</td>
             </tr>"#,
-            lead.nombre, telefono, web_badge, direccion,
+            lead.maps_url, lead.nombre, telefono, web_badge, direccion,
             lead.calificacion, lead.reseñas, estado_badge
         )
     }).collect::<Vec<_>>().join("\n");
@@ -69,10 +71,11 @@ pub async fn generate_report(page: &Page, leads: &[Lead], output_path: &str) -> 
   code {{ background: #f3f4f6; padding: 2px 6px; border-radius: 4px; font-size: 11px; color: #1d4ed8; }}
 
   .badge {{ display: inline-block; padding: 3px 8px; border-radius: 12px; font-size: 10px; font-weight: 600; text-align: center; }}
-  .badge.none {{ background: #dbeafe; color: #1d4ed8; }}
-  .badge.social {{ background: #fef3c7; color: #92400e; }}
-  .badge.ok {{ background: #d1fae5; color: #065f46; }}
-  .badge.warn {{ background: #fee2e2; color: #991b1b; }}
+  .badge.none {{ background: #dbeafe; color: #1d4ed8; text-decoration: none; }}
+  .badge.social {{ background: #fef3c7; color: #92400e; text-decoration: none; display: inline-block; }}
+  .badge.social small {{ display: block; overflow: hidden; text-overflow: ellipsis; max-width: 150px; white-space: nowrap; }}
+  .badge.ok {{ background: #d1fae5; color: #065f46; text-decoration: none; }}
+  .badge.warn {{ background: #fee2e2; color: #991b1b; text-decoration: none; }}
 
   .footer {{ margin-top: 24px; text-align: center; color: #9ca3af; font-size: 10px; border-top: 1px solid #e5e7eb; padding-top: 12px; }}
 </style>
@@ -119,7 +122,7 @@ pub async fn generate_report(page: &Page, leads: &[Lead], output_path: &str) -> 
 </body>
 </html>"#,
         categoria = leads.first().map(|l| l.categoria.as_str()).unwrap_or("—"),
-        zona = leads.first().map(|l| l.categoria.as_str()).unwrap_or("—"),
+        zona = zona,
         date = date_str,
         total = total,
         con_tel = leads.iter().filter(|l| l.telefono.is_some()).count(),

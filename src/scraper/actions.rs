@@ -257,7 +257,7 @@ pub async fn scrape_maps(
                 .and_then(|v| serde_json::from_value::<Detail>(v).ok())
                 .unwrap_or(Detail { phone: None, web: None, addr: None });
 
-            let mut final_phone = detail.phone;
+            let mut final_phone = detail.phone.clone();
             if let Some(ref tel) = final_phone {
                 let lower = tel.to_lowercase();
                 let digits = tel.chars().filter(|c| c.is_ascii_digit()).count();

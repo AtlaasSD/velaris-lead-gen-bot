@@ -263,7 +263,7 @@ async fn main() -> Result<()> {
 
         println!("  {} Compilando {} filas en el reporte...", "◆".cyan(), all_leads.len());
 
-        reporter::generate_report(&page, &all_leads, &output_name).await
+        reporter::generate_report(&page, &all_leads, &output_name, &zona).await
             .map_err(|e| anyhow::anyhow!("{}", e))?;
 
         print_success(&format!("PDF generado exitosamente."));
